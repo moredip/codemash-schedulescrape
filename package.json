@@ -4,12 +4,17 @@
   "description": "",
   "main": "index.coffee",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -C --compilers coffee:coffee-script ./specs/setup.coffee ./specs/*_spec.coffee"
   },
   "author": "phodgson@thoughtworks.com",
   "license": "",
   "devDependencies": {
     "mocha": "~1.16.2",
-    "sinon": "~1.7.3"
+    "sinon": "~1.7.3",
+    "chai": "~1.8.1",
+    "sinon-chai": "~2.4.0"
+  },
+  "dependencies": {
+    "coffee-script": "~1.6.3"
   }
 }
