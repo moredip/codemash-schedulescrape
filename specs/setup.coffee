@@ -1,4 +1,4 @@
-global.define = (theirModule,factory)->
+global.define = (theirModule,moduleName,factory)->
   thing = factory()
   theirModule.exports = thing
 

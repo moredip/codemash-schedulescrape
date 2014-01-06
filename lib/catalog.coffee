@@ -18,5 +18,5 @@ fromJson = (json)->
     timeslotById: timeslotById
   }
 
-define module,  ->
+define module, 'catalog',  ->
   { fromJson }
