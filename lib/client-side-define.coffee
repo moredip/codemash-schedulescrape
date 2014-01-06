@@ -1,4 +1,6 @@
 window.module = "this isn't node, so I'm not a thing"
+window.the = {}
+
 window.define = (theirModule,moduleName,factory)->
   thing = factory()
-  window[moduleName] = thing
+  window.the[moduleName] = thing
