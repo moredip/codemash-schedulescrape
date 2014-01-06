@@ -1,6 +1,3 @@
-_ = require('underscore')
-
-
 fromJson = (json)-> 
   timeslotById = (id)->
     idAsNumber = parseInt(id)
