@@ -8,3 +8,4 @@ sinonChai = require("sinon-chai")
 chai.use(sinonChai)
 
 global.sinon = require('sinon')
+global._ = require('underscore')

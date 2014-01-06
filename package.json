@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.coffee",
   "scripts": {
-    "test": "mocha -C --compilers coffee:coffee-script ./specs/setup.coffee ./specs/*_spec.coffee"
+    "test": "mocha -c -R spec --compilers coffee:coffee-script ./specs/setup.coffee ./specs/*_spec.coffee",
+    "testw": "mocha -w -C -R min  --compilers coffee:coffee-script ./specs/setup.coffee ./specs/*_spec.coffee"
   },
   "author": "phodgson@thoughtworks.com",
   "license": "",
@@ -17,6 +18,7 @@
   "dependencies": {
     "coffee-script": "~1.6.3",
     "requirejs": "~2.1.9",
-    "amdefine": "~0.1.0"
+    "amdefine": "~0.1.0",
+    "underscore": "~1.5.2"
   }
 }
