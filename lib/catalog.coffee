@@ -47,9 +47,13 @@ fromJson = (json)->
   roomById = createEntityByIdFn('Rooms')
   speakerById = createEntityByIdFn('Speakers', decorateSpeaker)
 
+  timeslots = ->
+    _.filter _.map( json.Timeslots, decorateTimeslot ), (timeslot)->
+      timeslot.sessions().length > 0
+
   {
     speakers: -> json.Speakers
-    timeslots: -> _.map( json.Timeslots, decorateTimeslot )
+    timeslots: timeslots
     timeslotById: timeslotById
     sessionById: sessionById
     roomById: roomById

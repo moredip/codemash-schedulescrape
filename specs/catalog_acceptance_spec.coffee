@@ -21,6 +21,10 @@ describe 'catalog parsing', ->
     it 'contains timeslots in the catalog', ->
       expect( timeslots ).not.to.be.empty
 
+    it "doesn't include timeslots which contain no sessions", ->
+      emptyTimeslot = _.findWhere( timeslots, { ID: 21882 } )
+      expect( emptyTimeslot ).not.to.exist
+
     halfDayTuesdayTimeSlot = loadCatalog().timeslotById('21915')
 
     it 'looks up a timeslot by id', ->

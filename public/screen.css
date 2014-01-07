@@ -8,6 +8,7 @@ body {
 }
 
 body > h1 {
+  font-size: 30pt;
   padding: 20px; 
   font-weight: 100;
 }
@@ -26,7 +27,7 @@ article.timeslot > header > h1 {
 
 article.session {
   padding: 3px 20px;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   background-color: #ddd;
 }
 
