@@ -1,6 +1,15 @@
 timeslotsTmpl = Handlebars.compile """
 {{#timeslots}}
-  <div class="timeslot">{{description}}</div>
+  <article class="timeslot">
+    <header><h1>{{description}}</h1></header>
+    {{#sessions}}
+      <article class="session">
+        <h1>{{name}}</h1>
+        <p>{{description}}</p>
+      </article>
+      <hr/>
+    {{/sessions}}
+  </article>
 {{/timeslots}}
 """
 

@@ -1,10 +1,18 @@
 CATALOG_URL = "/catalog.json"
 
 
+sessionsToViewModel = (sessions)->
+  _.map sessions, (s)->
+    {
+      name: s.Name
+      description: s.Description
+    }
+
 timeslotsToViewModel = (timeslots)->
   _.map timeslots, (t)->
     {
       description: t.Description
+      sessions: sessionsToViewModel( t.sessions() )
     }
 
 $ ->
