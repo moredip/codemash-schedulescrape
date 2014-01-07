@@ -6,6 +6,8 @@ sessionsToViewModel = (sessions)->
     {
       name: s.Name
       description: s.Description
+      location: s.location()
+      speaker: s.speaker() 
       link: the.router.routeFor.session(s.ID)
     }
 
@@ -28,6 +30,4 @@ $ ->
     mainModel.set('timeslots', timeslotsToViewModel(catalog.timeslots()))
     mainView.render()
 
-
-  debugger
   Backbone.history.start()

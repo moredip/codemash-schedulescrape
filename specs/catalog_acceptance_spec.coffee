@@ -44,3 +44,21 @@ describe 'catalog parsing', ->
     expect( sessionNames ).to.contain('Building WinPhone Apps -- FULL DAY')
     expect( sessionNames ).to.contain('Hands-on Rails in the Cloud -- FULL DAY')
 
+  describe 'rooms', ->
+    it 'looks up room by id', ->
+      ironWood = loadCatalog().roomById('4212')
+      expect( ironWood ).to.exist
+      expect( ironWood.Name ).to.equal('Ironwood')
+
+
+  describe 'sessions', ->
+    buildLightSaberSession = loadCatalog().sessionById('26053')
+
+    it 'looks up session by id', ->
+      expect( buildLightSaberSession ).to.exist
+      expect( buildLightSaberSession.Name ).to.equal("Building your own lightsaber: Arduino + Pi + Node.js == build light")
+
+    it 'has a room', ->
+      expect( buildLightSaberSession.room() ).to.exist
+      expect( buildLightSaberSession.room().Name ).to.equal('Salon A')
+

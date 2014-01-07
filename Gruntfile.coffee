@@ -17,7 +17,7 @@ module.exports = (grunt)->
     concat:
       js: 
         src: ['public/javascripts/client-side-define.js','public/javascripts/*.js']
-        dest: 'public/javascripts/all.js'
+        dest: 'public/all.js'
 
     watch:
       coffee:
@@ -25,4 +25,3 @@ module.exports = (grunt)->
         tasks: ['build']
 
   grunt.registerTask('build', ['coffee','concat'])
-      
