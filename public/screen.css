@@ -12,10 +12,39 @@ body > h1 {
   font-weight: 100;
 }
 
+p {
+  font-weight: 400;
+}
+
 article.timeslot > header > h1 {
-  size: 20pt;
+  font-size: 20pt;
   padding: 10px 20px;
   background-color: #222;
   color: #eee;
   font-weight: 100;
+}
+
+article.session {
+  padding: 3px 20px;
+  margin: 20px 0;
+  background-color: #ddd;
+}
+
+article.session > header > h1 {
+  font-size: 16pt;
+  margin: 0;
+  padding: 6px 0;
+  font-weight: 100;
+}
+
+article.session > header > h2 {
+  margin: 0;
+  padding: 2px 0;
+  font-size: 12pt;
+  font-style: italic;
+  font-weight: 100;
+}
+
+article.session span.room, span.speakers {
+  font-weight: bold;
 }

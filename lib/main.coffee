@@ -3,11 +3,16 @@ CATALOG_URL = "/catalog.json"
 
 sessionsToViewModel = (sessions)->
   _.map sessions, (s)->
+    room = s.room() || {}
+    speakers = _.map( s.speakers(), (s)->s.name() ).join(", ")
+    timeslot = s.timeslot()
     {
       name: s.Name
       description: s.Description
-      location: s.location()
-      speaker: s.speaker() 
+      room: room.Name
+      speakers: speakers
+      startTime: timeslot.startTimeForDisplay()
+      endTime: timeslot.endTimeForDisplay()
       link: the.router.routeFor.session(s.ID)
     }
 

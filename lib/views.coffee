@@ -4,7 +4,12 @@ timeslotsTmpl = Handlebars.compile """
     <header><h1>{{description}}</h1></header>
     {{#sessions}}
       <article class="session">
-        <a href="{{link}}"><h1>{{name}}</h1></a>
+        <header>
+          <h1><a href="{{link}}">{{name}}</a></h1>
+          <h2>in <span class="room">{{room}}</span></h2>
+          <h2>presented by <span class="speakers">{{speakers}}</span></h2>
+          <h2>from <span class="time">{{startTime}}</span> to <span class="time">{{endTime}}</span></h2>
+        </header>
         <p>{{description}}</p>
       </article>
     {{/sessions}}

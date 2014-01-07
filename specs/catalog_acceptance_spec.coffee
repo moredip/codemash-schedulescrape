@@ -18,20 +18,22 @@ describe 'catalog parsing', ->
   describe 'timeslots', ->
     timeslots = loadCatalog().timeslots()
 
-    it 'should contain some timeslots', ->
+    it 'contains timeslots in the catalog', ->
       expect( timeslots ).not.to.be.empty
 
-    it 'should contain a specific expected timeslot', ->
-      firstThingFriday = _.findWhere( timeslots, {Description:"1/10/2014 8:15am to 9:15am"} )
-      expect( firstThingFriday ).to.exist
+    halfDayTuesdayTimeSlot = loadCatalog().timeslotById('21915')
 
     it 'looks up a timeslot by id', ->
-      halfDayTuesdaySession = loadCatalog().timeslotById('21915')
-      expect( halfDayTuesdaySession ).to.exist
-      expect( halfDayTuesdaySession.Description ).to.equal( '1/7/2014 8:30am to 12:30pm' )
+      expect( halfDayTuesdayTimeSlot ).to.exist
+      expect( halfDayTuesdayTimeSlot.Description ).to.equal( '1/7/2014 8:30am to 12:30pm' )
 
-    it 'handles an invalid timeslot id', ->
+    it 'handles looking up an invalid timeslot id', ->
       expect( loadCatalog().timeslotById('bad id') ).not.to.exist
+
+    it 'has a start and end time for display', ->
+      halfDayTuesdayTimeSlot = loadCatalog().timeslotById('21915')
+      expect( halfDayTuesdayTimeSlot.startTimeForDisplay() ).to.equal( "8:30" )
+      expect( halfDayTuesdayTimeSlot.endTimeForDisplay() ).to.equal( "12:30" )
 
   it 'lists all sessions in a timeslot', ->
     tuesdayAllDayTimeslot = loadCatalog().timeslotById('21914')
@@ -50,6 +52,12 @@ describe 'catalog parsing', ->
       expect( ironWood ).to.exist
       expect( ironWood.Name ).to.equal('Ironwood')
 
+  describe 'speakers', ->
+    it 'looks up speaker by id', ->
+      pete = loadCatalog().speakerById('27345')
+      expect( pete ).to.exist
+      expect( pete.name() ).to.equal('Pete Hodgson')
+
 
   describe 'sessions', ->
     buildLightSaberSession = loadCatalog().sessionById('26053')
@@ -61,4 +69,13 @@ describe 'catalog parsing', ->
     it 'has a room', ->
       expect( buildLightSaberSession.room() ).to.exist
       expect( buildLightSaberSession.room().Name ).to.equal('Salon A')
+
+    it 'has speakers', ->
+      expect( buildLightSaberSession.speakers() ).to.exist
+      expect( buildLightSaberSession.speakers().length ).to.equal(1)
+      expect( buildLightSaberSession.speakers()[0].name() ).to.equal('Pete Hodgson')
+
+    it 'has a timeslot', ->
+      expect( buildLightSaberSession.timeslot() ).to.exist
+      expect( buildLightSaberSession.timeslot().Description ).to.equal('1/10/14 1:45pm to 2:45pm')
 
