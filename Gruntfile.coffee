@@ -11,13 +11,13 @@ module.exports = (grunt)->
         expand: true
         cwd: 'lib/'
         src: ['**/*.coffee']
-        dest: 'site/javascripts/'
+        dest: 'public/javascripts/'
         ext: '.js'
 
     concat:
       js: 
-        src: ['site/javascripts/client-side-define.js','site/javascripts/*.js']
-        dest: 'site/javascripts/all.js'
+        src: ['public/javascripts/client-side-define.js','public/javascripts/*.js']
+        dest: 'public/javascripts/all.js'
 
     watch:
       coffee:
