@@ -1,6 +1,5 @@
 CATALOG_URL = "/catalog.json"
 
-
 sessionsToViewModel = (sessions)->
   _.map sessions, (s)->
     room = s.room() || {}
@@ -30,7 +29,6 @@ $ ->
 
   $.getJSON( CATALOG_URL ).then (catalogJson)->
     catalog = the.catalog.fromJson(catalogJson)
-    console.dir(catalog)
 
     mainModel.set('timeslots', timeslotsToViewModel(catalog.timeslots()))
     mainView.render()

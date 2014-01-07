@@ -23,6 +23,7 @@
     "coffee-script": "~1.6.3",
     "requirejs": "~2.1.9",
     "amdefine": "~0.1.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "q": "~0.9.7"
   }
 }
