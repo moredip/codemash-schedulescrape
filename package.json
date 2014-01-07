@@ -15,7 +15,9 @@
     "chai": "~1.8.1",
     "sinon-chai": "~2.4.0",
     "grunt": "~0.4.2",
-    "grunt-contrib-coffee": "~0.8.0"
+    "grunt-contrib-coffee": "~0.8.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
   },
   "dependencies": {
     "coffee-script": "~1.6.3",

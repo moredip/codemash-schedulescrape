@@ -1,0 +1,21 @@
+html,body { margin: 0; padding: 0 }
+
+a { text-decoration: none; color: inherit; }
+
+body {
+  font-family: helvetica;
+  font-weight: 200;
+}
+
+body > h1 {
+  padding: 20px; 
+  font-weight: 100;
+}
+
+article.timeslot > header > h1 {
+  size: 20pt;
+  padding: 10px 20px;
+  background-color: #222;
+  color: #eee;
+  font-weight: 100;
+}

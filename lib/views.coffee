@@ -4,10 +4,9 @@ timeslotsTmpl = Handlebars.compile """
     <header><h1>{{description}}</h1></header>
     {{#sessions}}
       <article class="session">
-        <h1>{{name}}</h1>
+        <a href="{{link}}"><h1>{{name}}</h1></a>
         <p>{{description}}</p>
       </article>
-      <hr/>
     {{/sessions}}
   </article>
 {{/timeslots}}
@@ -18,4 +17,4 @@ define module, 'MainView', ->
     el: "body>section"
 
     render: ->
-      @$('#timeslots').html( timeslotsTmpl( @model.attributes ) )
+      @$el.html( timeslotsTmpl( @model.attributes ) )

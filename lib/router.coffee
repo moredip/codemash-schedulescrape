@@ -1,9 +1,15 @@
 define module, 'router', ->
-  Backbone.Router.extend 
+  OurRouter = Backbone.Router.extend 
     routes:
       '' : 'home',
-      'session': 'session'
+      'session/:id': 'session'
 
     home: ->
 
-    session: ->
+    session: (id)->
+      console.log("details for session #{id}")
+
+    routeFor: 
+      session: (id)-> "#session/#{id}" 
+
+  new OurRouter

@@ -6,6 +6,7 @@ sessionsToViewModel = (sessions)->
     {
       name: s.Name
       description: s.Description
+      link: the.router.routeFor.session(s.ID)
     }
 
 timeslotsToViewModel = (timeslots)->
@@ -27,6 +28,6 @@ $ ->
     mainModel.set('timeslots', timeslotsToViewModel(catalog.timeslots()))
     mainView.render()
 
-  new the.router
 
+  debugger
   Backbone.history.start()
