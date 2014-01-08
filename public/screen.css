@@ -33,6 +33,7 @@ article.timeslot > header > h1 {
   background-color: #222;
   color: #eee;
   font-weight: 100;
+  cursor: pointer;
 }
 
 article.session {
@@ -58,4 +59,8 @@ article.session > header > h2 {
 
 article.session span.room, span.speakers {
   font-weight: bold;
+}
+
+.hidden {
+  display: none;
 }
