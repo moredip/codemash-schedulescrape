@@ -1,1 +1,1 @@
-http://cdn.eventboard.falafel.com/conferencecatalogs/codemash2014.36.data.json
+http://cdn.eventboard.falafel.com/conferencecatalogs/codemash2014.59.data.json
