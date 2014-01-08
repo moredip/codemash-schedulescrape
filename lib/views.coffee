@@ -1,9 +1,8 @@
 timeslotsTmpl = Handlebars.compile """
-{{#timeslots}}
   <article class="timeslot">
     <header><h1>{{description}}</h1></header>
     {{#sessions}}
-      <article class="session">
+      <article class="session hidden">
         <header>
           <h1><a href="{{link}}">{{name}}</a></h1>
           <h2>in <span class="room">{{room}}</span></h2>
@@ -14,7 +13,6 @@ timeslotsTmpl = Handlebars.compile """
       </article>
     {{/sessions}}
   </article>
-{{/timeslots}}
 """
 
 define module, 'MainView', ->
@@ -22,4 +20,20 @@ define module, 'MainView', ->
     el: "body>section"
 
     render: ->
-      @$el.html( timeslotsTmpl( @model.attributes ) )
+      @timeslots =
+        _.map @model.attributes.timeslots, (a) -> new the.TimeSlotView( model: a )
+      _.forEach @timeslots, (a) -> a.render()
+      _.forEach @timeslots, (a) => @$el.append( a.el )
+
+define module, 'TimeSlotView', ->
+  Backbone.View.extend
+    tagName: 'article'
+    className: 'timeslot'
+    events:
+      "click .timeslot>header:first-child" : "toggle_sessions"
+
+    render: ->
+      @$el.html( timeslotsTmpl( @model ) )
+
+    toggle_sessions: ->
+      @$el.find('.session').toggleClass('hidden')
