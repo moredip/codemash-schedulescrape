@@ -1,11 +1,12 @@
 CATALOG_URL = "/catalog.json"
 
-createController = ({jsonFetcher,catalogCreator,timeslotsViewModelMapper})->
+createController = ({jsonFetcher,catalogCreator,timeslotsViewModelMapper,mainModel})->
   boot = ->
     jsonFetcher(CATALOG_URL).then (json)->
       catalog = catalogCreator(json)
-      console.log( 'TIMESLOTS: ', catalog.timeslots() )
       viewModel = timeslotsViewModelMapper( catalog.timeslots() )
+      mainModel.set('timeslots',viewModel)
+
 
 
   {boot}

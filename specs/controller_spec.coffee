@@ -1,4 +1,6 @@
+Backbone = require('backbone')
 Q = require('q')
+
 createController = require('../lib/controller')
 
 describe 'the main controller', ->
@@ -12,6 +14,7 @@ describe 'the main controller', ->
         jsonFetcher: sinon.stub().returns(genericPromise)
         timeslotsViewModelMapper: -> "blah"
         catalogCreator: -> genericFakeCatalog
+        mainModel: new Backbone.Model()
       }
 
       createController( _.extend( {}, defaultDeps, explicitDependencies ) )
@@ -43,9 +46,11 @@ describe 'the main controller', ->
       }
       stubCatalogCreator = sinon.stub().returns( fakeCatalog )
       spyViewModelMapper = sinon.stub().returns( 'fake view model' )
+      mainModel = new Backbone.Model()
 
-      controller = createIsolatedController( catalogCreator: stubCatalogCreator, timeslotsViewModelMapper: spyViewModelMapper )
+      controller = createIsolatedController( catalogCreator: stubCatalogCreator, timeslotsViewModelMapper: spyViewModelMapper, mainModel: mainModel )
 
       controller.boot().then ->
         expect( spyViewModelMapper ).calledWith('fake timeslots')
+        expect( mainModel.get('timeslots') ).equal('fake view model')
         done()
