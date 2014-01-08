@@ -1,3 +1,12 @@
+#fork-me {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#fork-me img {
+  width: 149px; height: 149px
+}
+
 html,body { margin: 0; padding: 0 }
 
 a { text-decoration: none; color: inherit; }
@@ -11,6 +20,7 @@ body > h1 {
   font-size: 30pt;
   padding: 20px; 
   font-weight: 100;
+  padding-left: 100px;
 }
 
 p {
