@@ -22,7 +22,13 @@ presentTimeslotFromCatalog = (timeslot)->
   }
 
 
-TimeslotModel = Backbone.Model
+TimeslotModel = Backbone.Model.extend
+  defaults:
+    collapsed: true
+
+  toggleCollapsed: ->
+    @set( 'collapsed', !@get('collapsed') )
+
 
 TimeslotsCollection = Backbone.Collection.extend
   model: TimeslotModel
@@ -34,6 +40,9 @@ ConferenceModel = Backbone.Model.extend
   loadTimeslotsFromCatalog: (timeslots)->
     timeslotsAsViewModels = _.map( timeslots, presentTimeslotFromCatalog )
     @get('timeslots').add( timeslotsAsViewModels )
+
+  expandAllTimeslots: ->
+    @get('timeslots').invoke( 'set', {collapsed: false} )
 
 #define module, 'TimeslotModel', TimeslotModel
 #define module, 'TimeslotsCollection', TimeslotsCollection

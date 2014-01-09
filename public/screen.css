@@ -7,6 +7,11 @@
   width: 149px; height: 149px
 }
 
+.expand-all {
+  float: right;
+  cursor: pointer;
+}
+
 html,body { margin: 0; padding: 0 }
 
 a { text-decoration: none; color: inherit; }
@@ -25,6 +30,10 @@ body > h1 {
 
 p {
   font-weight: 400;
+}
+
+.schedule .timeslots {
+  padding-top: 0.5em;
 }
 
 article.timeslot > header > h1 {

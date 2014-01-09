@@ -20,24 +20,35 @@ define module, 'MainView', ->
     el: "body>section"
 
     events:
-      "click .expand-all" : "expand_all"
+      "click .expand-all" : "expandAll"
 
     render: ->
-      @$el.empty()
-      @model.get('timeslots').each (t) =>
+      $timeslots = @$el.find('.timeslots')
+      $timeslots.empty()
+      @model.get('timeslots').each (t) ->
         timeslotView = new the.TimeSlotView( model: t )
-        @$el.append( timeslotView.render().el )
+        $timeslots.append( timeslotView.render().el )
+
+     expandAll: ->
+       @model.expandAllTimeslots()
 
 define module, 'TimeSlotView', ->
   Backbone.View.extend
     tagName: 'article'
     className: 'timeslot'
     events:
-      "click .timeslot>header:first-child" : "toggle_sessions"
+      "click .timeslot>header:first-child" : "onClickHeader"
+
+    initialize: ->
+      @model.on( 'change', @refresh, @ )
 
     render: ->
       @$el.html( timeslotsTmpl( @model.attributes ) )
+      @refresh()
       @
 
-    toggle_sessions: ->
-      @$el.find('.session').toggleClass('hidden')
+    refresh: ->
+      @$el.find('.session').toggleClass( 'hidden', @model.get('collapsed') )
+
+    onClickHeader: ->
+      @model.toggleCollapsed()
