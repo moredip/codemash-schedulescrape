@@ -19,11 +19,14 @@ define module, 'MainView', ->
   Backbone.View.extend
     el: "body>section"
 
+    events:
+      "click .expand-all" : "expand_all"
+
     render: ->
-      @timeslots =
-        _.map @model.attributes.timeslots, (a) -> new the.TimeSlotView( model: a )
-      _.forEach @timeslots, (a) -> a.render()
-      _.forEach @timeslots, (a) => @$el.append( a.el )
+      @$el.empty()
+      @model.get('timeslots').each (t) =>
+        timeslotView = new the.TimeSlotView( model: t )
+        @$el.append( timeslotView.render().el )
 
 define module, 'TimeSlotView', ->
   Backbone.View.extend
@@ -33,7 +36,8 @@ define module, 'TimeSlotView', ->
       "click .timeslot>header:first-child" : "toggle_sessions"
 
     render: ->
-      @$el.html( timeslotsTmpl( @model ) )
+      @$el.html( timeslotsTmpl( @model.attributes ) )
+      @
 
     toggle_sessions: ->
       @$el.find('.session').toggleClass('hidden')
