@@ -5,7 +5,6 @@ fetchCatalog = ->
     the.catalog.fromJson(catalogJson)
 
 $ ->
-
   conferenceModel = new the.ConferenceModel
   mainView = new the.MainView( model: conferenceModel )
 

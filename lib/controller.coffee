@@ -1,5 +1,3 @@
-CATALOG_URL = "/catalog.json"
-
 createController = ({fetchCatalog,conferenceViewModel})->
   boot = ->
     fetchCatalog().then (catalog)->
