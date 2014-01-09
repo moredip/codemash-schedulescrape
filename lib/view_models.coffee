@@ -37,13 +37,14 @@ ConferenceModel = Backbone.Model.extend
   defaults:  ->
     timeslots: new TimeslotsCollection
 
+  initialize: ->
+
   loadTimeslotsFromCatalog: (timeslots)->
     timeslotsAsViewModels = _.map( timeslots, presentTimeslotFromCatalog )
     @get('timeslots').add( timeslotsAsViewModels )
+    @trigger('change:timeslots')
 
   expandAllTimeslots: ->
     @get('timeslots').invoke( 'set', {collapsed: false} )
 
-#define module, 'TimeslotModel', TimeslotModel
-#define module, 'TimeslotsCollection', TimeslotsCollection
 define module, 'ConferenceModel', -> ConferenceModel

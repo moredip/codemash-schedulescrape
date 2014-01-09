@@ -1,13 +1,9 @@
 CATALOG_URL = "/catalog.json"
 
-createController = ({jsonFetcher,catalogCreator,timeslotsViewModelMapper,mainModel})->
+createController = ({fetchCatalog,conferenceViewModel})->
   boot = ->
-    jsonFetcher(CATALOG_URL).then (json)->
-      catalog = catalogCreator(json)
-      viewModel = timeslotsViewModelMapper( catalog.timeslots() )
-      mainModel.set('timeslots',viewModel)
-
-
+    fetchCatalog().then (catalog)->
+      conferenceViewModel.loadTimeslotsFromCatalog(catalog.timeslots())
 
   {boot}
 

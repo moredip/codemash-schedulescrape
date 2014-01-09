@@ -22,6 +22,9 @@ define module, 'MainView', ->
     events:
       "click .expand-all" : "expandAll"
 
+    initialize: ->
+      @model.on( 'change:timeslots', @render, @ )
+
     render: ->
       $timeslots = @$el.find('.timeslots')
       $timeslots.empty()

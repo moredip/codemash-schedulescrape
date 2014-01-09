@@ -6,51 +6,41 @@ createController = require('../lib/controller')
 describe 'the main controller', ->
 
   describe 'boot', ->
-    genericPromise = Q('blah')
-    genericFakeCatalog = { timeslots: -> 'fake timeslots' }
+    genericConferenceViewModel = {
+      loadTimeslotsFromCatalog: _.identity
+    }
+    genericPromise = Q("blah")
 
     createIsolatedController = (explicitDependencies = {})->
       defaultDeps = {
-        jsonFetcher: sinon.stub().returns(genericPromise)
-        timeslotsViewModelMapper: -> "blah"
-        catalogCreator: -> genericFakeCatalog
-        mainModel: new Backbone.Model()
+        fetchCatalog: -> genericPromise
+        conferenceViewModel: genericConferenceViewModel
       }
 
       createController( _.extend( {}, defaultDeps, explicitDependencies ) )
 
 
-    it 'makes an ajax call to load the catalog', ->
-      spyJsonFetcher = sinon.stub().returns(genericPromise)
-
-      controller = createController({jsonFetcher:spyJsonFetcher})
+    it 'requests the catalog from the catalog source', ->
+      spyCatalogSource = sinon.stub().returns(genericPromise)
+      
+      controller = createIsolatedController( fetchCatalog: spyCatalogSource )
       controller.boot()
 
-      expect( spyJsonFetcher ).called
-      expect( spyJsonFetcher.lastCall.args.length ).equal(1)
+      expect( spyCatalogSource ).called
 
-    it 'turns the raw JSON into a catalog', (done)->
-      fakeJsonFetch = Q('fake catalog json')
-      stubJsonFetcher = -> fakeJsonFetch
-
-      spyCatalogCreator = sinon.stub().returns( genericFakeCatalog )
-
-      controller = createIsolatedController({jsonFetcher:stubJsonFetcher,catalogCreator:spyCatalogCreator})
-      controller.boot().then ->
-        expect( spyCatalogCreator ).calledWith('fake catalog json')
-        done()
-
-    it "populates the main model with a view model from the catalog's timeslots", (done)->
+    it 'updates its conference view model with timeslots from the fetched catalog', (done)->
       fakeCatalog = {
-        timeslots: -> 'fake timeslots'
+        timeslots: -> 'timeslots from fake catalog'
       }
-      stubCatalogCreator = sinon.stub().returns( fakeCatalog )
-      spyViewModelMapper = sinon.stub().returns( 'fake view model' )
-      mainModel = new Backbone.Model()
+      
+      fakeCatalogFetch = Q(fakeCatalog)
+      stubCatalogSource = -> fakeCatalogFetch
 
-      controller = createIsolatedController( catalogCreator: stubCatalogCreator, timeslotsViewModelMapper: spyViewModelMapper, mainModel: mainModel )
+      spyConferenceModel = {
+        loadTimeslotsFromCatalog: sinon.spy()
+      }
 
+      controller = createIsolatedController( fetchCatalog: stubCatalogSource, conferenceViewModel: spyConferenceModel )
       controller.boot().then ->
-        expect( spyViewModelMapper ).calledWith('fake timeslots')
-        expect( mainModel.get('timeslots') ).equal('fake view model')
+        expect( spyConferenceModel.loadTimeslotsFromCatalog ).calledWith( 'timeslots from fake catalog' )
         done()
