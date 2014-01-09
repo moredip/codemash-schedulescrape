@@ -1,9 +1,9 @@
 {
     "Audiences": [],
-    "ChangeDate": "/Date(1389134037698)/",
+    "ChangeDate": "/Date(1389209518996)/",
     "ConferenceID": 282,
-    "DataVersion": 59,
-    "Hash64": "wos6QWpnp462OLGDavLji9cWq9U=",
+    "DataVersion": 62,
+    "Hash64": "EGbu1UUxk+dHk1dQYIkmtCDPh4Y=",
     "LabelSets": [],
     "Levels": [
         {
@@ -395,10 +395,6 @@
         {
             "SessionID": 25970,
             "SpeakerID": 27323
-        },
-        {
-            "SessionID": 25971,
-            "SpeakerID": 27251
         },
         {
             "SessionID": 25971,
@@ -1473,8 +1469,8 @@
             "IsPrivate": false,
             "IsSponsorSession": false,
             "LevelID": null,
-            "LocationID": null,
-            "ModifiedOn": "/Date(1388507943993+0000)/",
+            "LocationID": 4206,
+            "ModifiedOn": "/Date(1389209331743+0000)/",
             "Name": "Advanced Topics in Agile Testing--FULL DAY",
             "RegistrationStartDate": null,
             "RequiresRegistration": false,
@@ -2423,8 +2419,8 @@
             "IsPrivate": false,
             "IsSponsorSession": false,
             "LevelID": 676,
-            "LocationID": 4203,
-            "ModifiedOn": "/Date(1388191115703+0000)/",
+            "LocationID": 4195,
+            "ModifiedOn": "/Date(1389200299183+0000)/",
             "Name": "An Honest Look at Independence",
             "RegistrationStartDate": null,
             "RequiresRegistration": false,
